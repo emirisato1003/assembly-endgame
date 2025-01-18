@@ -14,8 +14,7 @@ body {
 }
 
 header{
-  height: 140px;
-  width: 350px;
+  text-align: center;
 }
 
 header h1{
@@ -26,4 +25,6 @@ header h1{
 
 header p{
   color: #8E8E8E;
+  font-size: .875rem;
+  max-width: 350px;
 }
