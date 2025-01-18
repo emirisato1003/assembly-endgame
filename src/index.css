@@ -28,3 +28,26 @@ header p{
   font-size: .875rem;
   max-width: 350px;
 }
+
+section.status{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color:#10A95B;
+  border-radius: 4px;
+  height: 59px;
+  color:#F9F4DA;
+  margin-block: 30px;
+}
+
+section.status h2{
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+section.status p{
+  font-size: .875rem;
+  margin: 0;
+}
