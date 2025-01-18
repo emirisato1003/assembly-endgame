@@ -64,3 +64,20 @@ span.chip{
   padding: 4.5px;
   border-radius: 3px;
 }
+
+section.letters-container{
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-block: 36px;
+}
+
+span.letter{
+  background-color: #323232;
+  padding: 9px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.125rem;
+  border-bottom: 1px solid #F9F4DA;
+}

@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import { nanoid } from 'nanoid';
 import { languages } from './languages';
 import './App.css';
 
 function App() {
+
+  const [currentWord, setCurrentWord] = useState("react");
+  const letterElements = currentWord
+    .split('')
+    .map((letter, index) => <span key={index} className='letter'>{letter.toLocaleUpperCase()}</span>);
 
   const languageElement = languages.map(lang => {
     const styles = {
@@ -14,7 +17,7 @@ function App() {
     };
 
     return (
-      <span className='chip' style={styles}>
+      <span key={lang.name} className='chip' style={styles}>
         {lang.name}
       </span>
     );
@@ -35,8 +38,13 @@ function App() {
       <section className='language-chips'>
         {languageElement}
       </section>
+
+      <section className='letters-container'>
+        {letterElements}
+      </section>
     </main>
   );
 }
 
 export default App;
+
