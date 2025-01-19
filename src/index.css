@@ -24,6 +24,7 @@ header h1{
 }
 
 header p{
+  justify-self: center;
   color: #8E8E8E;
   font-size: .875rem;
   max-width: 350px;
@@ -57,6 +58,7 @@ section.language-chips{
   flex-wrap: wrap;
   max-width: 350px;
   justify-content: center;
+  justify-self: center;
   gap: 5px;
 }
 
@@ -80,4 +82,38 @@ span.letter{
   text-align: center;
   font-size: 1.125rem;
   border-bottom: 1px solid #F9F4DA;
+  margin-bottom: 20px;;
+}
+
+section.keyboard-container{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 480px;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+button.keyboard{
+  background-color: #FCBA29;
+  border: #D7D7D7 solid 1px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+button.new-game {
+  background-color: #11B5E5;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  width: 225px;
+  height: 40px;
+  padding: 6px 12px;
+  display: block;
+  margin-inline: auto;
+  cursor: pointer;
 }

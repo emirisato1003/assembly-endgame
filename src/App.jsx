@@ -6,11 +6,14 @@ import './App.css';
 function App() {
 
   const [currentWord, setCurrentWord] = useState("react");
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
   const letterElements = currentWord
     .split('')
     .map((letter, index) => <span key={index} className='letter'>{letter.toLocaleUpperCase()}</span>);
 
-  const languageElement = languages.map(lang => {
+  const languageElements = languages.map(lang => {
     const styles = {
       backgroundColor: lang.backgroundColor,
       color: lang.color
@@ -20,6 +23,15 @@ function App() {
       <span key={lang.name} className='chip' style={styles}>
         {lang.name}
       </span>
+    );
+  });
+
+  const keyboardElements = alphabet.split('').map(tab => {
+
+    return (
+      <button key={tab} aria-label={tab} className='keyboard'>
+        {tab.toLocaleUpperCase()}
+      </button>
     );
   });
 
@@ -36,12 +48,18 @@ function App() {
       </section>
 
       <section className='language-chips'>
-        {languageElement}
+        {languageElements}
       </section>
 
       <section className='letters-container'>
         {letterElements}
       </section>
+
+      <section className='keyboard-container'>
+        {keyboardElements}
+      </section>
+
+      <button className="new-game">New Game</button>
     </main>
   );
 }
