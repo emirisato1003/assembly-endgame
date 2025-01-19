@@ -94,7 +94,7 @@ section.keyboard-container{
   margin-bottom: 36px;
 }
 
-button.keyboard{
+section.keyboard-container > button{
   background-color: #FCBA29;
   border: #D7D7D7 solid 1px;
   cursor: pointer;
@@ -116,4 +116,12 @@ button.new-game {
   display: block;
   margin-inline: auto;
   cursor: pointer;
+}
+
+section.keyboard-container > button.correct{
+  background-color: #10A95B
+}
+
+section.keyboard-container > button.wrong{
+  background-color: #EC5D49 ;
 }

@@ -1,17 +1,26 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { languages } from './languages';
+import clsx from 'clsx';
 import './App.css';
 
 function App() {
 
   const [currentWord, setCurrentWord] = useState("react");
 
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const [guessedLetters, setGuessedLetters] = useState([]);
 
-  const letterElements = currentWord
-    .split('')
-    .map((letter, index) => <span key={index} className='letter'>{letter.toLocaleUpperCase()}</span>);
+  function addGuessedLetter(letter) {
+    setGuessedLetters(prevLetters => {
+      const setLetters = new Set(prevLetters);
+      setLetters.add(letter);
+      return Array.from(setLetters);
+    }
+    );
+
+  }
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   const languageElements = languages.map(lang => {
     const styles = {
@@ -20,17 +29,38 @@ function App() {
     };
 
     return (
-      <span key={lang.name} className='chip' style={styles}>
+      <span
+        key={lang.name}
+        className='chip'
+        style={styles}
+      >
         {lang.name}
       </span>
     );
   });
 
-  const keyboardElements = alphabet.split('').map(tab => {
+  const letterElements = currentWord.split('').map((letter, index) => (
+    <span key={index} className='letter'>{letter.toLocaleUpperCase()}</span>
+  ));
 
+  const keyboardElements = alphabet.split('').map(letter => {
+    const isGuessed = guessedLetters.includes(letter);
+    const isCorrect = isGuessed && currentWord.includes(letter);
+    const isWrong = isGuessed && !currentWord.includes(letter);
+
+    const className = clsx({
+      'correct': isCorrect,
+      'wrong': isWrong
+
+    });
     return (
-      <button key={tab} aria-label={tab} className='keyboard'>
-        {tab.toLocaleUpperCase()}
+      <button
+        onClick={() => addGuessedLetter(letter)}
+        key={letter}
+        aria-label={letter}
+        className={className}
+      >
+        {letter.toLocaleUpperCase()}
       </button>
     );
   });
