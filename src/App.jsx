@@ -39,9 +39,13 @@ function App() {
     );
   });
 
-  const letterElements = currentWord.split('').map((letter, index) => (
-    <span key={index} className='letter'>{letter.toLocaleUpperCase()}</span>
-  ));
+  const letterElements = currentWord.split('').map((letter, index) => {
+    const showLetter = guessedLetters.includes(letter)
+    return (
+      <span key={index} className='letter'>{showLetter && letter.toLocaleUpperCase()}</span>
+    );
+  }
+  );
 
   const keyboardElements = alphabet.split('').map(letter => {
     const isGuessed = guessedLetters.includes(letter);
