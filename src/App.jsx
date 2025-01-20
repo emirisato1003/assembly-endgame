@@ -5,10 +5,21 @@ import clsx from 'clsx';
 import './App.css';
 
 function App() {
-
+  // State values
   const [currentWord, setCurrentWord] = useState("react");
-
   const [guessedLetters, setGuessedLetters] = useState([]);
+
+  // Derived values
+  const wrongGuessCount = guessedLetters.filter(letter =>
+    !currentWord.includes(letter)
+  ).length
+
+  console.log(wrongGuessCount);
+
+
+
+  // Static values
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   function addGuessedLetter(letter) {
     setGuessedLetters(prevLetters => {
@@ -19,8 +30,6 @@ function App() {
     );
 
   }
-
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   const languageElements = languages.map(lang => {
     const styles = {
@@ -40,7 +49,7 @@ function App() {
   });
 
   const letterElements = currentWord.split('').map((letter, index) => {
-    const showLetter = guessedLetters.includes(letter)
+    const showLetter = guessedLetters.includes(letter);
     return (
       <span key={index} className='letter'>{showLetter && letter.toLocaleUpperCase()}</span>
     );
@@ -51,7 +60,6 @@ function App() {
     const isGuessed = guessedLetters.includes(letter);
     const isCorrect = isGuessed && currentWord.includes(letter);
     const isWrong = isGuessed && !currentWord.includes(letter);
-
     const className = clsx({
       'correct': isCorrect,
       'wrong': isWrong
