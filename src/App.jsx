@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { languages } from './languages';
 import clsx from 'clsx';
 import './App.css';
@@ -12,10 +11,7 @@ function App() {
   // Derived values
   const wrongGuessCount = guessedLetters.filter(letter =>
     !currentWord.includes(letter)
-  ).length
-
-  console.log(wrongGuessCount);
-
+  ).length;
 
 
   // Static values
@@ -31,16 +27,18 @@ function App() {
 
   }
 
-  const languageElements = languages.map(lang => {
+  const languageElements = languages.map((lang, index) => {
     const styles = {
       backgroundColor: lang.backgroundColor,
       color: lang.color
     };
 
+    const isLost = index < wrongGuessCount;
+    const className = clsx('chip', isLost && 'lost');
     return (
       <span
         key={lang.name}
-        className='chip'
+        className={className}
         style={styles}
       >
         {lang.name}
