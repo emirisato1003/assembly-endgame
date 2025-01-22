@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { languages } from './languages';
 import clsx from 'clsx';
+import { getFarewellText } from './utils';
 import './App.css';
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
   const isGameWon = currentWord.split('').every(letter => guessedLetters.includes(letter));
   const isGameLost = wrongGuessCount >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
+
+  const mostRecentLetter = guessedLetters[guessedLetters.length - 1];
+  const isFarewell = wrongGuessCount && !currentWord.includes(mostRecentLetter) && !isGameLost;
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -80,8 +84,37 @@ function App() {
 
   const gameStatesClass = clsx("game-status", {
     won: isGameWon,
-    lost: isGameLost
+    lost: isGameLost,
+    farewell: isFarewell
   });
+
+
+  function renderGameStatus() {
+    if (isFarewell) {
+      return (
+        <h2>"{getFarewellText(languages[wrongGuessCount - 1].name)}"</h2>
+      );
+    }
+    if (!isGameOver) {
+      return null;
+    }
+
+    if (isGameWon) {
+      return (
+        <>
+          <h2>You win!</h2>
+          <p>Well done! 🎉</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <h2>Game over!</h2>
+          <p>You lose! Better start learning Assembly 😭</p>
+        </>
+      );
+    }
+  }
 
   return (
     <main>
@@ -92,13 +125,7 @@ function App() {
 
 
       <section className={gameStatesClass}>
-        {isGameOver ?
-          <>
-            <h2>{isGameWon ? 'You win!' : "Game Over!"}</h2>
-            <p>{isGameWon ? 'Well done!🎉' : "You lose! Better start learning Assembly😭"}</p>
-          </>
-          : null
-        }
+        {renderGameStatus()}
       </section>
 
 

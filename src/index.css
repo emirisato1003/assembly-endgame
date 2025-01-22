@@ -49,6 +49,12 @@ section.game-status.lost{
   background-color: #BA2A2A;  
 }
 
+section.game-status.farewell{
+  background-color: #7A5EA7;
+  font-style: italic;
+  border: 1px dashed #323232;
+}
+
 section.game-status h2{
   font-size: 1.25rem;
   margin: 0;
