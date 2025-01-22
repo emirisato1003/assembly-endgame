@@ -147,6 +147,12 @@ button.new-game {
   cursor: pointer;
 }
 
+section.keyboard-container > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5
+}
+
+
 section.keyboard-container > button.correct{
   background-color: #10A95B
 }

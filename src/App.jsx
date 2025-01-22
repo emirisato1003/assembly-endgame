@@ -76,6 +76,7 @@ function App() {
         key={letter}
         aria-label={letter}
         className={className}
+        disabled={isGameOver}
       >
         {letter.toLocaleUpperCase()}
       </button>
