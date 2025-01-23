@@ -10,12 +10,13 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   // Derived values
+  const numGuessesLeft = languages.length - 1;
   const wrongGuessCount = guessedLetters.filter(letter =>
     !currentWord.includes(letter)
   ).length;
 
   const isGameWon = currentWord.split('').every(letter => guessedLetters.includes(letter));
-  const isGameLost = wrongGuessCount >= languages.length - 1;
+  const isGameLost = wrongGuessCount >= numGuessesLeft;
   const isGameOver = isGameWon || isGameLost;
 
   const mostRecentLetter = guessedLetters[guessedLetters.length - 1];
@@ -74,9 +75,10 @@ function App() {
       <button
         onClick={() => addGuessedLetter(letter)}
         key={letter}
-        aria-label={letter}
+        aria-label={`letter ${letter}`}
         className={className}
         disabled={isGameOver}
+        aria-disabled={guessedLetters.includes(letter)}
       >
         {letter.toLocaleUpperCase()}
       </button>
@@ -125,7 +127,11 @@ function App() {
       </header>
 
 
-      <section className={gameStatesClass}>
+      <section
+        aria-live='polite'
+        role='status'
+        className={gameStatesClass}
+      >
         {renderGameStatus()}
       </section>
 
@@ -136,6 +142,22 @@ function App() {
 
       <section className='letters-container'>
         {letterElements}
+      </section>
+
+      {/* Combined visually-hidden aria-live region for status updates */}
+      <section
+        className="sr-only"
+        aria-live="polite"
+        role="status"
+      >
+        <p>
+          {currentWord.includes(mostRecentLetter) ? `Correct! The letter ${mostRecentLetter} is in the word.` : `Sorry, the letter ${mostRecentLetter} is not in the word.`}
+          You have {numGuessesLeft} attempts left.
+        </p>
+        <p>Current word: {currentWord.split("").map(letter =>
+          guessedLetters.includes(letter) ? letter + "." : "blank.")
+          .join(" ")}</p>
+
       </section>
 
       <section className='keyboard-container'>
