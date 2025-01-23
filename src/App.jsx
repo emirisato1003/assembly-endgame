@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { languages } from './languages';
 import clsx from 'clsx';
-import { getFarewellText } from './utils';
+import { getFarewellText,  getRandomWord } from './utils';
 import './App.css';
 
 function App() {
   // State values
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   // Derived values
