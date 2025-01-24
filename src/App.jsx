@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { languages } from './languages';
 import clsx from 'clsx';
-import { getFarewellText,  getRandomWord } from './utils';
+import { getFarewellText, getRandomWord } from './utils';
 import './App.css';
 
 function App() {
@@ -54,11 +54,24 @@ function App() {
     );
   });
 
-  const letterElements = currentWord.split('').map((letter, index) => {
-    const showLetter = guessedLetters.includes(letter);
-    return (
-      <span key={index} className='letter'>{showLetter && letter.toLocaleUpperCase()}</span>
-    );
+  // const letterElements = currentWord.split('').map((letter, index) => {
+  //   const showLetter = guessedLetters.includes(letter);
+  //   const styles = { color: !guessedLetters.includes(letter) ? '#BA2A2A' : '#F9F4DA' };
+  //   return (
+  //     <span key={index} style={styles} className='letter'>
+  //       {isGameOver ? letter.toLocaleUpperCase() : showLetter && letter.toLocaleUpperCase()}
+  //     </span>
+  //   );
+  // }
+  // );
+
+  const letterElements = currentWord.split("").map((letter, index) => {
+  const styles = { color: !guessedLetters.includes(letter) ? '#BA2A2A' : '#F9F4DA' };
+    return (<span key={index} style={styles}>
+      {!isGameOver ?
+        (guessedLetters.includes(letter) ? letter.toUpperCase() : "")
+        : letter.toUpperCase()}
+    </span>);
   }
   );
 
@@ -119,9 +132,9 @@ function App() {
     }
   }
 
-  function resetGame(){
-    setCurrentWord(() => getRandomWord())
-    setGuessedLetters([])
+  function resetGame() {
+    setCurrentWord(() => getRandomWord());
+    setGuessedLetters([]);
   }
 
   return (

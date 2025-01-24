@@ -103,7 +103,7 @@ section.letters-container{
   margin-block: 36px;
 }
 
-span.letter{
+section.letters-container > span{
   background-color: #323232;
   padding: 9px;
   width: 40px;
