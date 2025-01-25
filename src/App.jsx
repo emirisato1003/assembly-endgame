@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { languages } from './languages';
 import clsx from 'clsx';
 import { getFarewellText, getRandomWord } from './utils';
-import Confetti from 'react-confetti';
+import ReactConfetti from 'react-confetti';
 import './App.css';
 
 function App() {
@@ -131,6 +131,7 @@ function App() {
 
   return (
     <main>
+      {isGameWon && <ReactConfetti />}
       <header>
         <h1>Assembly: Endgame</h1>
         <p>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
