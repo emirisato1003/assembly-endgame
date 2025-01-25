@@ -114,6 +114,10 @@ section.letters-container > span{
   margin-bottom: 20px;
 }
 
+section.letters-container > span.missed-letter{
+  color: #BA2A2A;
+}
+
 section.keyboard-container{
   display: flex;
   flex-wrap: wrap;

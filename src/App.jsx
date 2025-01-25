@@ -54,24 +54,15 @@ function App() {
     );
   });
 
-  // const letterElements = currentWord.split('').map((letter, index) => {
-  //   const showLetter = guessedLetters.includes(letter);
-  //   const styles = { color: !guessedLetters.includes(letter) ? '#BA2A2A' : '#F9F4DA' };
-  //   return (
-  //     <span key={index} style={styles} className='letter'>
-  //       {isGameOver ? letter.toLocaleUpperCase() : showLetter && letter.toLocaleUpperCase()}
-  //     </span>
-  //   );
-  // }
-  // );
-
   const letterElements = currentWord.split("").map((letter, index) => {
-  const styles = { color: !guessedLetters.includes(letter) ? '#BA2A2A' : '#F9F4DA' };
-    return (<span key={index} style={styles}>
-      {!isGameOver ?
-        (guessedLetters.includes(letter) ? letter.toUpperCase() : "")
-        : letter.toUpperCase()}
-    </span>);
+    const shouldRevealLetter = isGameLost || guessedLetters.includes(letter);
+    const letterClassName = clsx(
+      isGameLost && !guessedLetters.includes(letter) && "missed-letter"
+    );
+    return (
+      <span key={index} className={letterClassName}>
+        {shouldRevealLetter ? letter.toUpperCase() : ""}
+      </span>);
   }
   );
 
