@@ -6,6 +6,12 @@ import ReactConfetti from 'react-confetti';
 import './App.css';
 
 function App() {
+
+// 1. display the "remaining guesses" count
+// 2. render some kind of "anti-confetti" when the game is lost, or another animation of some kind
+// 3. set a timer on the game that causes a loss if the time runs out
+
+
   // State values
   const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
@@ -131,7 +137,7 @@ function App() {
 
   return (
     <main>
-      {isGameWon && <ReactConfetti />}
+      {isGameWon && <ReactConfetti numberOfPieces={1000}/>}
       <header>
         <h1>Assembly: Endgame</h1>
         <p>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
