@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { languages } from './languages';
 import clsx from 'clsx';
 import { getFarewellText, getRandomWord } from './utils';
-
+import Confetti from 'react-confetti';
 import './App.css';
 
 function App() {
