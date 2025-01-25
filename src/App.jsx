@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { languages } from './languages';
 import clsx from 'clsx';
 import { getFarewellText, getRandomWord } from './utils';
+
 import './App.css';
 
 function App() {
